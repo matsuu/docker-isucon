@@ -1,0 +1,6 @@
+version: '2'
+services:
+  standalone:
+    image: matsuu/isucon4-qualifier-standalone:latest
+    ports:
+      - "80:80"
