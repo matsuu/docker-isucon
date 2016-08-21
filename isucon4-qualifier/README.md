@@ -8,7 +8,7 @@ ISUCON4予選のDockerfile
 ### 起動
 
 ```
-docker run -d -n standalone -p 80:80 matsuu/isucon4-qualifier-standalone:latest
+docker run -d --name standalone -p 80:80 matsuu/isucon4-qualifier-standalone:latest
 ```
 
 ### ベンチマーク
