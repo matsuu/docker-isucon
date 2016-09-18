@@ -31,15 +31,15 @@ docker exec standalone bash
 # go
 curl -o docker-compose.yml -L https://github.com/matsuu/docker-isucon/raw/master/isucon4-qualifier/docker-compose-go.yml
 # node
-curl -o docker-compose.yml -L https://github.com/matsuu/docker-isucon/raw/master/isucon4-qualifier/docker-compose-go.yml
+curl -o docker-compose.yml -L https://github.com/matsuu/docker-isucon/raw/master/isucon4-qualifier/docker-compose-node.yml
 # perl
-curl -o docker-compose.yml -L https://github.com/matsuu/docker-isucon/raw/master/isucon4-qualifier/docker-compose-go.yml
+curl -o docker-compose.yml -L https://github.com/matsuu/docker-isucon/raw/master/isucon4-qualifier/docker-compose-perl.yml
 # php
-curl -o docker-compose.yml -L https://github.com/matsuu/docker-isucon/raw/master/isucon4-qualifier/docker-compose-go.yml
+curl -o docker-compose.yml -L https://github.com/matsuu/docker-isucon/raw/master/isucon4-qualifier/docker-compose-php.yml
 # python
-curl -o docker-compose.yml -L https://github.com/matsuu/docker-isucon/raw/master/isucon4-qualifier/docker-compose-go.yml
+curl -o docker-compose.yml -L https://github.com/matsuu/docker-isucon/raw/master/isucon4-qualifier/docker-compose-python.yml
 # ruby
-curl -o docker-compose.yml -L https://github.com/matsuu/docker-isucon/raw/master/isucon4-qualifier/docker-compose-go.yml
+curl -o docker-compose.yml -L https://github.com/matsuu/docker-isucon/raw/master/isucon4-qualifier/docker-compose-ruby.yml
 ```
 
 ### 起動
