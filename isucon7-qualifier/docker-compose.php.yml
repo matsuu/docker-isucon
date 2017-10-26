@@ -1,0 +1,60 @@
+version: '3'
+services:
+  bench:
+    build:
+      context: ./docker/bench
+      args:
+        GIT_URL: https://github.com/isucon/isucon7-qualify.git
+    image: isucon7-qualifier-bench
+    depends_on:
+      - web
+    networks:
+      - frontend
+  web:
+    build:
+      context: ./docker/web-php
+      args:
+        GIT_URL: https://github.com/isucon/isucon7-qualify.git
+    image: isucon7-qualifier-web:nginx-php
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+  app:
+    build:
+      context: ./docker/app/php
+      args:
+        GIT_URL: https://github.com/isucon/isucon7-qualify.git
+    image: isucon7-qualifier-app:php
+    networks:
+      - backend
+    depends_on:
+       - db
+    ports:
+      - "5000"
+    environment:
+      ISUBATA_DB_USER: isucon
+      ISUBATA_DB_PASSWORD: isucon
+      ISUBATA_DB_HOST: db
+  db:
+    build:
+      context: ./docker/db
+      args:
+        GIT_URL: https://github.com/isucon/isucon7-qualify.git
+    image: isucon7-qualifier-db
+    ports:
+      - "3306"
+    networks:
+      - backend
+    command: ["--character-set-server=utf8mb4"]
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: isubata
+      MYSQL_USER: isucon
+      MYSQL_PASSWORD: isucon
+networks:
+  frontend:
+  backend:
