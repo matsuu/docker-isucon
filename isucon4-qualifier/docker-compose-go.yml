@@ -6,14 +6,14 @@ services:
       - nginx
       - mysql
   nginx:
-    build: /Users/kojiMac/IdeaProjects/docker-isucon/isucon4-qualifier/nginx
+    build: nginx
     links:
       - webapp
     ports:
       - "80:80"
   webapp:
     #image: matsuu/isucon4-qualifier-webapp-go:latest
-    build: /Users/kojiMac/IdeaProjects/docker-isucon/isucon4-qualifier/webapp/go
+    build: webapp/go
     links:
        - mysql
     ports:

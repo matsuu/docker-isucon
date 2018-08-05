@@ -2,11 +2,23 @@ FROM centos:6
 
 MAINTAINER matsuu@gmail.com
 
+# 時間がかかるyum updateおよびgolangのダウンロードおよび展開をキャッシュ化
 RUN \
   yum -y update && \
   yum -y install git mysql sudo && \
   useradd -G wheel isucon && \
   echo '%wheel ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
+  curl -L http://golang.org/dl/go1.10.3.linux-amd64.tar.gz | tar zxf - -C /usr/local
+
+# goの依存関係の一部を先に打ち込む
+COPY prebuild.sh .
+RUN \
+  chmod a+x prebuild.sh \
+  ./prebuild.sh
+
+# ダミーファイルを読んで以下処理をbuildするようにする
+ADD "https://api.github.com/repos/mattsu6/isucon4/git/refs/heads/#1" version.json
+RUN  \
   git clone -b mattsu https://github.com/mattsu6/isucon4.git && \
   mkdir /tmp/isucon && \
   rsync -a isucon4/qualifier/sql /tmp/isucon/ && \
@@ -26,9 +38,7 @@ RUN \
   rm -rf isucon4 /tmp/isucon
 
 WORKDIR /home/isucon/webapp/go
-RUN \
-  curl -L http://golang.org/dl/go1.10.3.linux-amd64.tar.gz | tar zxf - -C /usr/local && \
-  /home/isucon/env.sh ./build.sh 
+RUN /home/isucon/env.sh ./build.sh 
 
 EXPOSE 8080
 CMD ["/home/isucon/env.sh", "./golang-webapp"]
