@@ -6,13 +6,13 @@ ISUCON4予選のDockerfile
 ## usage(docker-compose)
 ### 起動
 ```
-$ sh ./app.sh start <lang>
+$ sh ./app.sh start <lang> 
 # if you wanna start go webapp
-$ sh ./app.sh start go
+$ sh ./app.sh start go 
 ```
 ### 停止
 ```
-$ sh ./app.sh stop <lang>
+$ sh ./app.sh stop <lang> 
 # if you wanna stop go webapp
 $ sh ./app.sh stop go
 ```
@@ -21,6 +21,17 @@ $ sh ./app.sh stop go
 ```
 $ sh ./bench.sh <lang>
 ```
+### webapp取得先ブランチ変更(go オンリー)
+* Dockerfile20行目の
+  
+    `ADD "https://api.github.com/repos/mattsu6/isucon4/git/refs/heads/<branch>" version.json`
+    の`<branch>`部分をブランチ名に変更
+
+* Dockerfile22行目の
+
+    `git clone -b <branch> https://github.com/mattsu6/isucon4.git`
+    の`<branch>`部分をブランチ名に変更
+
 
 
 
