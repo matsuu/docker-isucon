@@ -1,21 +1,4 @@
-FROM centos:6
-
-MAINTAINER matsuu@gmail.com
-
-# 時間がかかるyum updateおよびgolangのダウンロードおよび展開をキャッシュ化
-RUN \
-  yum -y update && \
-  yum -y install git mysql sudo && \
-  useradd -G wheel isucon && \
-  echo '%wheel ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
-  curl -L http://golang.org/dl/go1.10.3.linux-amd64.tar.gz | tar zxf - -C /usr/local
-
-# goの依存関係の一部を先に打ち込む
-COPY prebuild.sh .
-RUN \
-  chmod a+x prebuild.sh \
-  ./prebuild.sh
-
+FROM tosukui/docker-isucon4-webapp-go-cache:1
 # ブランチの更新を見て以下を再ビルドします
 ADD "https://api.github.com/repos/mattsu6/isucon4/git/refs/heads/master" version.json
 RUN  \
