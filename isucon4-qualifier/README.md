@@ -3,6 +3,27 @@
 ## Overview
 ISUCON4予選のDockerfile
 
+## usage(docker-compose)
+### 起動
+```
+$ sh ./app.sh start <lang>
+# if you wanna start go webapp
+$ sh ./app.sh start go
+```
+### 停止
+```
+$ sh ./app.sh stop <lang>
+# if you wanna stop go webapp
+$ sh ./app.sh stop go
+```
+
+### ベンチ
+```
+$ sh ./bench.sh <lang>
+```
+
+
+
 ## Usage(Standalone)
 
 ### 起動
