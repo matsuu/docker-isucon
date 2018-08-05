@@ -18,6 +18,7 @@ services:
        - mysql
     ports:
       - "8080"
+      - "6060"
     environment:
       ISU4_DB_USER: isucon
       ISU4_DB_PASSWORD: isucon
