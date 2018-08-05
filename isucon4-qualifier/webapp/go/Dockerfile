@@ -16,8 +16,8 @@ RUN \
   chmod a+x prebuild.sh \
   ./prebuild.sh
 
-# ダミーファイルを読んで以下処理をbuildするようにする
-ADD "https://api.github.com/repos/mattsu6/isucon4/git/refs/heads/#1" version.json
+# ブランチの更新を見て以下を再ビルドします
+ADD "https://api.github.com/repos/mattsu6/isucon4/git/refs/heads/master" version.json
 RUN  \
   git clone -b mattsu https://github.com/mattsu6/isucon4.git && \
   mkdir /tmp/isucon && \
