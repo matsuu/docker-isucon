@@ -6,7 +6,7 @@ services:
       - nginx
       - mysql
   nginx:
-    image: matsuu/isucon4-qualifier-nginx:latest
+    build: ./nginx
     links:
       - webapp
     ports:
@@ -14,7 +14,7 @@ services:
   webapp:
     image: matsuu/isucon4-qualifier-webapp-ruby:latest
     links:
-       - mysql
+      - mysql
     ports:
       - "8080"
     environment:
