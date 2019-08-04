@@ -22,6 +22,8 @@ services:
       ISU4_DB_PASSWORD: isucon
       ISU4_DB_HOST: mysql
       ISU4_DB_PORT: 3306
+    volumes:
+      - ./webapp/ruby:/home/isucon/webapp/ruby
   mysql:
     image: matsuu/isucon4-qualifier-mysql:latest
     ports:
