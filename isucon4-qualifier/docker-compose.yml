@@ -12,7 +12,7 @@ services:
     ports:
       - "80:80"
   webapp:
-    image: matsuu/isucon4-qualifier-webapp-ruby:latest
+    build: ./webapp/ruby
     links:
       - mysql
     ports:
