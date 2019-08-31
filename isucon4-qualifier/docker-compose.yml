@@ -32,3 +32,7 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     volumes:
       - ./mysql/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379"

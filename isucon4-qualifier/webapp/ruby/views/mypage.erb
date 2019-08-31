@@ -5,14 +5,14 @@
 
 <dl class="dl-horizontal">
   <dt>前回ログイン</dt>
-  <dd id="last-logined-at"><%= last_login['created_at'].strftime("%Y-%m-%d %H:%M:%S") %></dd>
+  <dd id="last-logined-at"><%= Time.at(last_login['at'].to_i).strftime("%Y-%m-%d %H:%M:%S") %></dd>
   <dt>最終ログインIPアドレス</dt>
   <dd id="last-logined-ip"><%= last_login['ip'] %></dd>
 </dl>
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    お客様ご契約ID：<%= last_login['login'] %> 様の代表口座
+    お客様ご契約ID：<%= current_user['login'] %> 様の代表口座
   </div>
   <div class="panel-body">
     <div class="row">
