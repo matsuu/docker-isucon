@@ -7,3 +7,4 @@ gem "rack-flash3"
 gem "unicorn"
 gem "foreman"
 gem "redis"
+gem 'erubis'
