@@ -11,6 +11,8 @@ services:
       - webapp
     ports:
       - "80:80"
+    volumes:
+      - udsocket:/var/socks
   webapp:
     build: ./webapp/ruby
     links:
@@ -24,6 +26,7 @@ services:
       ISU4_DB_PORT: 3306
     volumes:
       - ./webapp/ruby:/home/isucon/webapp/ruby
+      - udsocket:/var/socks
   mysql:
     image: matsuu/isucon4-qualifier-mysql:latest
     ports:
@@ -36,3 +39,5 @@ services:
     image: "redis:latest"
     ports:
       - "6379"
+volumes:
+  udsocket:

@@ -1,6 +1,6 @@
 worker_processes 10
 preload_app true
-listen "/tmp/unicorn.sock"
+listen "/var/socks/unicorn.sock"
 
-stdout_path File::NULL unless ENV['ISUDEBUG']
-stderr_path File::NULL unless ENV['ISUDEBUG']
+# stdout_path File::NULL unless ENV['ISUDEBUG']
+# stderr_path File::NULL unless ENV['ISUDEBUG']
