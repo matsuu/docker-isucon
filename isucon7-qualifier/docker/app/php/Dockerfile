@@ -1,10 +1,12 @@
-FROM php:7.1.9
+FROM php:7.1.9-fpm
 
 ARG GIT_URL=https://github.com/isucon/isucon7-qualify.git
 
+RUN docker-php-ext-install pdo_mysql
+
 RUN \
   apt-get update && \
-  apt-get install -y git && \
+  apt-get install -y git zip unzip && \
   git clone $GIT_URL /home/isucon/isubata && \
   cp /home/isucon/isubata/files/app/php.ini /etc/ && \
   cp /home/isucon/isubata/files/app/isubata.php-fpm.conf /etc/ && \
