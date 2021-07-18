@@ -4,18 +4,12 @@
 
 Dockerfile for [ISUCON](http://isucon.net/)
 
-- ISUCON1
-- ISUCON2
-- ISUCON3-qualifier
-- ISUCON3-final
 - [ISUCON4-qualifier](https://github.com/matsuu/docker-isucon/tree/master/isucon4-qualifier)
-- ISUCON4-final
-- ISUCON5-qualifier
-- ISUCON5-final
-- ISUCON6-qualifier
-- ISUCON6-final
 - [ISUCON7-qualifier](https://github.com/matsuu/docker-isucon/tree/master/isucon7-qualifier)
-- ISUCON7-final
+- [ISUCON8-final](https://github.com/isucon/isucon8-final/tree/master/webapp)
+- [ISUCON9-final](https://github.com/isucon/isucon9-final/tree/master/webapp)
+- [ISUCON10-qualify](https://github.com/isucon/isucon10-qualify/tree/master/webapp/docker-compose)
+
 
 ## License
 
