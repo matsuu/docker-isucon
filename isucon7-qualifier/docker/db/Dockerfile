@@ -1,9 +1,8 @@
 FROM golang:1.9 AS build-dev
 
-ARG GIT_URL=https://github.com/isucon/isucon7-qualify.git
+COPY . /home/isucon/isubata
 
 RUN \
-  git clone --depth=1 $GIT_URL /home/isucon/isubata && \
   cd /home/isucon/isubata/bench && \
   go get github.com/constabulary/gb/... && \
   gb vendor restore && \
