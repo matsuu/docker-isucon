@@ -13,8 +13,8 @@ services:
     build:
       context: ./isucon7-qualify
       dockerfile: ../docker/web/Dockerfile
-      target: runner
-    image: isucon7-qualifier-web:nginx
+      target: bench
+    image: isucon7-qualifier-web-bench:nginx
     networks:
       - frontend
       - backend
@@ -26,7 +26,7 @@ services:
     build:
       context: ./isucon7-qualify
       dockerfile: ../docker/app/nodejs/Dockerfile
-    image: isucon7-qualifier-app:nodejs
+    image: isucon7-qualifier-app-bench:nodejs
     networks:
       - backend
     depends_on:
@@ -41,7 +41,7 @@ services:
     build:
       context: ./isucon7-qualify
       dockerfile: ../docker/db/Dockerfile
-    image: isucon7-qualifier-db
+    image: isucon7-qualifier-db-bench
     ports:
       - "3306"
     networks:
