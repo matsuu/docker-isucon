@@ -41,6 +41,7 @@ services:
     build:
       context: ./isucon7-qualify
       dockerfile: ../docker/db/Dockerfile
+      target: runner
     image: isucon7-qualifier-db
     ports:
       - "3306"
