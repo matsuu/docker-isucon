@@ -24,8 +24,8 @@ services:
       - "80:80"
   app:
     build:
-      context: ./isucon7-qualify
-      dockerfile: ../docker/app/nodejs/Dockerfile
+      context: ./isucon7-qualify/webapp/nodejs
+      dockerfile: ../../../docker/app/nodejs/Dockerfile
     image: isucon7-qualifier-app:nodejs
     networks:
       - backend
