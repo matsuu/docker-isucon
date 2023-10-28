@@ -268,40 +268,27 @@ function sleep (seconds) {
 }
 
 app.get('/fetch', fetchUnread)
-function fetchUnread(req, res) {
+async function fetchUnread(req, res) {
   const { userId } = req.session
   if (!userId) {
     res.status(403).end()
     return
   }
 
-  return sleep(1.0)
-    .then(() => pool.query('SELECT id FROM channel'))
-    .then(rows => {
-      const channelIds = rows.map(row => row.id)
-      const results = []
-      let p = Promise.resolve()
+  await sleep(1.0)
 
-      channelIds.forEach(channelId => {
-        p = p.then(() => pool.query('SELECT * FROM haveread WHERE user_id = ? AND channel_id = ?', [userId, channelId]))
-          .then(([row]) => {
-            if (row) {
-              return pool.query('SELECT COUNT(*) as cnt FROM message WHERE channel_id = ? AND ? < id', [channelId, row.message_id])
-            } else {
-              return pool.query('SELECT COUNT(*) as cnt FROM message WHERE channel_id = ?', [channelId])
-            }
-          })
-          .then(([row3]) => {
-            const r = {}
-            r.channel_id = channelId
-            r.unread = row3.cnt
-            results.push(r)
-          })
-      })
-
-      return p.then(() => results)
-    })
-    .then(results => res.json(results))
+  const query = `SELECT 
+      C.id as channel_id, 
+      COUNT(M.id) as cnt
+   FROM channel AS C 
+   LEFT JOIN haveread as H 
+    ON H.channel_id = C.id AND H.user_id=?
+   LEFT JOIN message AS M 
+    ON M.channel_id = C.id AND IFNULL(H.message_id, 0) < M.id 
+  GROUP BY C.id;`
+  const rows = await pool.query(query, [userId]);
+  const results = rows.map(row => ({channel_id: row.channel_id, unread: row.cnt}));
+  res.json(results)
 }
 
 app.get('/history/:channelId', loginRequired, getHistory)

@@ -1,9 +1,9 @@
 FROM node:18.18
 
-COPY . /home/isucon/isubata
-WORKDIR /home/isucon/isubata/webapp/nodejs
+WORKDIR /work
+COPY package.json ./
 RUN npm install
+COPY . .
 
 EXPOSE 5000
-
-ENTRYPOINT ["node", "/home/isucon/isubata/webapp/nodejs"]
+ENTRYPOINT ["node", "./index.js"]
