@@ -1,4 +1,4 @@
-FROM node:6.11
+FROM node:18.18
 
 COPY . /home/isucon/isubata
 WORKDIR /home/isucon/isubata/webapp/nodejs
