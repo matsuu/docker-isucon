@@ -450,7 +450,7 @@ function ext2mime(ext) {
 app.get('/icons/:fileName', getIcon)
 function getIcon(req, res) {
   const { fileName } = req.params
-  return pool.query('SELECT * FROM image WHERE name = ?', [fileName])
+  return pool.query('SELECT data FROM image WHERE name = ? limit 1', [fileName])
     .then(([row]) => {
       const ext = path.extname(fileName) || ''
       const mime = ext2mime(ext)
